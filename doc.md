@@ -146,6 +146,7 @@ A Verto Studio Scene
     * [.editTarget](#Scene+editTarget) : [<code>Model</code>](#Model)
     * [.editMode](#Scene+editMode) : <code>boolean</code>
     * [.selection](#Scene+selection) : [<code>SceneSelection</code>](#SceneSelection) \| [<code>VertexSelection</code>](#VertexSelection) \| [<code>FaceSelection</code>](#FaceSelection)
+    * [.loadAllTextures()](#Scene+loadAllTextures)
     * [.selectAll()](#Scene+selectAll)
     * [.selectNone()](#Scene+selectNone)
     * [.selectInverse()](#Scene+selectInverse)
@@ -174,7 +175,7 @@ The Scene's current active camera
 <a name="Scene+textures"></a>
 
 ### scene.textures : [<code>Array.&lt;Texture&gt;</code>](#Texture)
-The Scene's textures
+The Scene's loaded textures
 
 **Kind**: instance property of [<code>Scene</code>](#Scene)  
 **Read only**: true  
@@ -212,6 +213,12 @@ Whether or not the Scene is currently in edit mode.
 The Scene selection
 
 **Kind**: instance property of [<code>Scene</code>](#Scene)  
+<a name="Scene+loadAllTextures"></a>
+
+### scene.loadAllTextures()
+Loads all of the Scene's textures
+
+**Kind**: instance method of [<code>Scene</code>](#Scene)  
 <a name="Scene+selectAll"></a>
 
 ### scene.selectAll()
