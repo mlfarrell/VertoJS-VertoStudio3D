@@ -17,6 +17,9 @@
 <dt><a href="#Model">Model</a></dt>
 <dd><p>A Verto Studio 3D model</p>
 </dd>
+<dt><a href="#Light">Light</a></dt>
+<dd><p>A Verto Studio 3D light</p>
+</dd>
 <dt><a href="#SceneSelection">SceneSelection</a></dt>
 <dd><p>Represents a user selection of Models</p>
 </dd>
@@ -41,6 +44,9 @@
 <dt><a href="#Quad">Quad</a></dt>
 <dd><p>A utility class representing a Quad face</p>
 </dd>
+<dt><a href="#Animation">Animation</a></dt>
+<dd><p>A utility class that drives animations inside of Verto Studio&#39;s Graphics Engine</p>
+</dd>
 </dl>
 
 ## Typedefs
@@ -60,6 +66,9 @@
 </dd>
 <dt><a href="#ModelEditFunction">ModelEditFunction</a> : <code>function</code></dt>
 <dd><p>The editor function used by Model.edit()</p>
+</dd>
+<dt><a href="#AnimationCallback">AnimationCallback</a> ⇒ <code>boolean</code></dt>
+<dd><p>The Animation handler function that is called once per animation frame.</p>
 </dd>
 </dl>
 
@@ -146,6 +155,7 @@ A Verto Studio Scene
     * [.editTarget](#Scene+editTarget) : [<code>Model</code>](#Model)
     * [.editMode](#Scene+editMode) : <code>boolean</code>
     * [.selection](#Scene+selection) : [<code>SceneSelection</code>](#SceneSelection) \| [<code>VertexSelection</code>](#VertexSelection) \| [<code>FaceSelection</code>](#FaceSelection)
+    * [.lights()](#Scene+lights) : [<code>Array.&lt;Light&gt;</code>](#Light)
     * [.loadAllTextures()](#Scene+loadAllTextures)
     * [.selectAll()](#Scene+selectAll)
     * [.selectNone()](#Scene+selectNone)
@@ -213,6 +223,13 @@ Whether or not the Scene is currently in edit mode.
 The Scene selection
 
 **Kind**: instance property of [<code>Scene</code>](#Scene)  
+<a name="Scene+lights"></a>
+
+### scene.lights() : [<code>Array.&lt;Light&gt;</code>](#Light)
+The Scene's lights
+
+**Kind**: instance method of [<code>Scene</code>](#Scene)  
+**Read only**: true  
 <a name="Scene+loadAllTextures"></a>
 
 ### scene.loadAllTextures()
@@ -534,6 +551,115 @@ Performs an edit on this model.  For the edit to be completed, the provided call
 | --- | --- | --- |
 | callback | [<code>ModelEditFunction</code>](#ModelEditFunction) | A function that implements the model edit. |
 
+<a name="Light"></a>
+
+## Light
+A Verto Studio 3D light
+
+**Kind**: global class  
+
+* [Light](#Light)
+    * [new Light()](#new_Light_new)
+    * [.type](#Light+type) : <code>string</code>
+    * [.w](#Light+w) : <code>number</code>
+    * [.z](#Light+z) : <code>number</code>
+    * [.y](#Light+y) : <code>number</code>
+    * [.x](#Light+x) : <code>number</code>
+    * [.spotAngleCutoff](#Light+spotAngleCutoff) : <code>number</code>
+    * [.spotIntensity](#Light+spotIntensity) : <code>number</code>
+    * [.spotDirection](#Light+spotDirection) : [<code>Point3D</code>](#Point3D)
+    * [.attenuation](#Light+attenuation) : <code>Array.&lt;number&gt;</code>
+    * [.pos](#Light+pos) : [<code>Point3D</code>](#Point3D)
+    * [.specular](#Light+specular) : <code>Array.&lt;number&gt;</code>
+    * [.ambient](#Light+ambient) : <code>Array.&lt;number&gt;</code>
+    * [.diffuse](#Light+diffuse) : <code>Array.&lt;number&gt;</code>
+
+<a name="new_Light_new"></a>
+
+### new Light()
+Creates a new Light and adds it to a Scene
+   <p>
+   Note: The default Verto Studio phong shader only supports up to 8 lights per scene.
+   </p>
+
+<a name="Light+type"></a>
+
+### light.type : <code>string</code>
+Accesses the Light's light type.  One of 'point', 'spot', or 'direction'
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+w"></a>
+
+### light.w : <code>number</code>
+Accesses the Light's position w-component.  This is either 0 for direction lights or 1 for point lights.
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+z"></a>
+
+### light.z : <code>number</code>
+Accesses the Light's position z-component.
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+y"></a>
+
+### light.y : <code>number</code>
+Accesses the Light's position y-component.
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+x"></a>
+
+### light.x : <code>number</code>
+Accesses the Light's position x-component.
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+spotAngleCutoff"></a>
+
+### light.spotAngleCutoff : <code>number</code>
+Accesses the Light's spot angle cutoff.  In the range of 0 to 90
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+spotIntensity"></a>
+
+### light.spotIntensity : <code>number</code>
+Accesses the Light's spot intensity.  In the range of 0 to 128
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+spotDirection"></a>
+
+### light.spotDirection : [<code>Point3D</code>](#Point3D)
+Accesses the Light's spot direction
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+attenuation"></a>
+
+### light.attenuation : <code>Array.&lt;number&gt;</code>
+Accesses the Light's attenuation vector array.  In the order of  Constant, Linear, Quadratic.
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+pos"></a>
+
+### light.pos : [<code>Point3D</code>](#Point3D)
+Accesses the Light's 3D position.
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+specular"></a>
+
+### light.specular : <code>Array.&lt;number&gt;</code>
+The Lights's RGBA specular (highlight) component (phong model)
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+ambient"></a>
+
+### light.ambient : <code>Array.&lt;number&gt;</code>
+The Lights's RGBA ambient component (phong model)
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
+<a name="Light+diffuse"></a>
+
+### light.diffuse : <code>Array.&lt;number&gt;</code>
+The Lights's RGBA diffuse component (phong model)
+
+**Kind**: instance property of [<code>Light</code>](#Light)  
 <a name="SceneSelection"></a>
 
 ## SceneSelection
@@ -1444,6 +1570,39 @@ Converts convenient Quad array to optimized low-level index array
 | --- | --- | --- |
 | i4a | [<code>Array.&lt;Quad&gt;</code>](#Quad) | The array of Quads to convert |
 
+<a name="Animation"></a>
+
+## Animation
+A utility class that drives animations inside of Verto Studio's Graphics Engine
+
+**Kind**: global class  
+
+* [Animation](#Animation)
+    * [.start([fps], callback)](#Animation.start)
+    * [.stop()](#Animation.stop)
+
+<a name="Animation.start"></a>
+
+### Animation.start([fps], callback)
+Starts an animation that calls the given callback 30 or 60 times per second.
+When running in Verto Studio, the scene will automatically redraw itself after each time the handler is called.
+<p>
+Note: When running in Verto Studio, only one animation is permitted to run at a single time.
+</p>
+
+**Kind**: static method of [<code>Animation</code>](#Animation)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [fps] | <code>integer</code> | The FPS to run this animation at.  Defaults to 30.  Currently valid values are 60 or 30. |
+| callback | [<code>AnimationCallback</code>](#AnimationCallback) | The callback that is called once per animation frame. |
+
+<a name="Animation.stop"></a>
+
+### Animation.stop()
+Stops the current animation if one is in progress.
+
+**Kind**: static method of [<code>Animation</code>](#Animation)  
 <a name="Point3D"></a>
 
 ## Point3D : <code>object</code>
@@ -1519,3 +1678,10 @@ The editor function used by Model.edit()
 | m | [<code>Model</code>](#Model) | The model being edited (this model). |
 | finish | [<code>ModelEditFinishCallback</code>](#ModelEditFinishCallback) | The method that must be called at the end of the edit to provide the new model data values. |
 
+<a name="AnimationCallback"></a>
+
+## AnimationCallback ⇒ <code>boolean</code>
+The Animation handler function that is called once per animation frame.
+
+**Kind**: global typedef  
+**Returns**: <code>boolean</code> - True to keep animating, false to stop the animation.  
