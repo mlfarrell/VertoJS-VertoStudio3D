@@ -23,8 +23,14 @@
 <dt><a href="#SceneSelection">SceneSelection</a></dt>
 <dd><p>Represents a user selection of Models</p>
 </dd>
+<dt><a href="#SelectedVertexItem">SelectedVertexItem</a></dt>
+<dd><p>Represents a selected vertex</p>
+</dd>
 <dt><a href="#VertexSelection">VertexSelection</a></dt>
 <dd><p>Represents a user selection of Vertices (Points)</p>
+</dd>
+<dt><a href="#SelectedFaceItem">SelectedFaceItem</a></dt>
+<dd><p>Represents a selected face</p>
 </dd>
 <dt><a href="#FaceSelection">FaceSelection</a></dt>
 <dd><p>Represents a user selection of Faces (Triangles or Quads)</p>
@@ -84,6 +90,7 @@ A singleton that represents the Verto Studio editor application
     * [.alert(Msg)](#VertoStudio+alert)
     * [.version()](#VertoStudio+version) ⇒ <code>number</code>
     * [.inputDialog(dialogOptions, callback)](#VertoStudio+inputDialog)
+    * [.onScriptEnd(callback)](#VertoStudio+onScriptEnd)
     * [.isVR()](#VertoStudio+isVR) ⇒ <code>boolean</code>
     * [.environmentType()](#VertoStudio+environmentType) ⇒ <code>string</code>
 
@@ -125,6 +132,19 @@ Presents an input dialog to the user with various parameter types.
 | --- | --- | --- |
 | dialogOptions | [<code>DialogOptions</code>](#DialogOptions) | The options for presenting the dialog. |
 | callback | [<code>InputDialogCallback</code>](#InputDialogCallback) | The callback that handles the user response. |
+
+<a name="VertoStudio+onScriptEnd"></a>
+
+### vertoStudio.onScriptEnd(callback)
+Registers a callback to signify the very end of the current script's execution, including all
+outstanding animations and input dialogs.
+This method can be useful for restoring the state of objects modified by transient operations such as animations.
+
+**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| callback | <code>ScriptEndCallback</code> | The callback that signifies the end of the script execution. |
 
 <a name="VertoStudio+isVR"></a>
 
@@ -432,6 +452,7 @@ A Verto Studio 3D model
     * [.normals](#Model+normals) : <code>Float32Array</code>
     * [.vertices](#Model+vertices) : <code>Float32Array</code>
     * [.material](#Model+material) : [<code>Material</code>](#Material)
+    * [.hidden](#Model+hidden) : <code>boolean</code>
     * [.scale](#Model+scale) : [<code>Point3D</code>](#Point3D)
     * [.orientation](#Model+orientation) : <code>Array.&lt;number&gt;</code>
     * [.pos](#Model+pos) : [<code>Point3D</code>](#Point3D)
@@ -499,6 +520,12 @@ Accesses the Model's position (vertices) vertex array
 
 ### model.material : [<code>Material</code>](#Material)
 Accesses the Model's material
+
+**Kind**: instance property of [<code>Model</code>](#Model)  
+<a name="Model+hidden"></a>
+
+### model.hidden : <code>boolean</code>
+Accesses the Model's hidden state.
 
 **Kind**: instance property of [<code>Model</code>](#Model)  
 <a name="Model+scale"></a>
@@ -778,6 +805,29 @@ Deletes this Selection's items from the scene
 Duplicate this Selection's items within the scene
 
 **Kind**: instance method of [<code>SceneSelection</code>](#SceneSelection)  
+<a name="SelectedVertexItem"></a>
+
+## SelectedVertexItem
+Represents a selected vertex
+
+**Kind**: global class  
+
+* [SelectedVertexItem](#SelectedVertexItem)
+    * [.type](#SelectedVertexItem+type) : <code>String</code>
+    * [.type](#SelectedVertexItem+type) : <code>integer</code>
+
+<a name="SelectedVertexItem+type"></a>
+
+### selectedVertexItem.type : <code>String</code>
+The type of this selected item ('vertex')
+
+**Kind**: instance property of [<code>SelectedVertexItem</code>](#SelectedVertexItem)  
+<a name="SelectedVertexItem+type"></a>
+
+### selectedVertexItem.type : <code>integer</code>
+The index of this selected vertex
+
+**Kind**: instance property of [<code>SelectedVertexItem</code>](#SelectedVertexItem)  
 <a name="VertexSelection"></a>
 
 ## VertexSelection
@@ -787,7 +837,7 @@ Represents a user selection of Vertices (Points)
 
 * [VertexSelection](#VertexSelection)
     * [new VertexSelection([scene])](#new_VertexSelection_new)
-    * [.items](#VertexSelection+items) : <code>Array.&lt;SelectedVertexItem&gt;</code>
+    * [.items](#VertexSelection+items) : [<code>Array.&lt;SelectedVertexItem&gt;</code>](#SelectedVertexItem)
     * [.count](#VertexSelection+count) : <code>integer</code>
     * [.add(item)](#VertexSelection+add)
     * [.remove(item)](#VertexSelection+remove)
@@ -821,7 +871,7 @@ Note: Verto Studio (the current scene) must be in edit mode to use this class
 
 <a name="VertexSelection+items"></a>
 
-### vertexSelection.items : <code>Array.&lt;SelectedVertexItem&gt;</code>
+### vertexSelection.items : [<code>Array.&lt;SelectedVertexItem&gt;</code>](#SelectedVertexItem)
 The Selections items
 
 **Kind**: instance property of [<code>VertexSelection</code>](#VertexSelection)  
@@ -842,7 +892,7 @@ Adds an item to the selection
 
 | Param | Type | Description |
 | --- | --- | --- |
-| item | <code>SelectedVertexItem</code> | The item to add to the selection. |
+| item | [<code>SelectedVertexItem</code>](#SelectedVertexItem) | The item to add to the selection. |
 
 <a name="VertexSelection+remove"></a>
 
@@ -853,7 +903,7 @@ Removes an item from the selection
 
 | Param | Type | Description |
 | --- | --- | --- |
-| item | <code>SelectedVertexItem</code> | The item to remove from the selection. |
+| item | [<code>SelectedVertexItem</code>](#SelectedVertexItem) | The item to remove from the selection. |
 
 <a name="VertexSelection+clear"></a>
 
@@ -961,6 +1011,36 @@ Extrude the faces made up by this selection.
 | direction | [<code>Point3D</code>](#Point3D) | The extrusion vector. |
 | cap | <code>boolean</code> | Whether or not to cap-off the extrusion (with new faces) |
 
+<a name="SelectedFaceItem"></a>
+
+## SelectedFaceItem
+Represents a selected face
+
+**Kind**: global class  
+
+* [SelectedFaceItem](#SelectedFaceItem)
+    * [.type](#SelectedFaceItem+type) : <code>String</code>
+    * [.group](#SelectedFaceItem+group) : <code>integer</code>
+    * [.type](#SelectedFaceItem+type) : <code>integer</code>
+
+<a name="SelectedFaceItem+type"></a>
+
+### selectedFaceItem.type : <code>String</code>
+The type of this selected item ('triangle' or 'quad')
+
+**Kind**: instance property of [<code>SelectedFaceItem</code>](#SelectedFaceItem)  
+<a name="SelectedFaceItem+group"></a>
+
+### selectedFaceItem.group : <code>integer</code>
+The index of the group this face belongs to within the model
+
+**Kind**: instance property of [<code>SelectedFaceItem</code>](#SelectedFaceItem)  
+<a name="SelectedFaceItem+type"></a>
+
+### selectedFaceItem.type : <code>integer</code>
+The index of this selected face
+
+**Kind**: instance property of [<code>SelectedFaceItem</code>](#SelectedFaceItem)  
 <a name="FaceSelection"></a>
 
 ## FaceSelection
@@ -970,7 +1050,7 @@ Represents a user selection of Faces (Triangles or Quads)
 
 * [FaceSelection](#FaceSelection)
     * [new FaceSelection([scene])](#new_FaceSelection_new)
-    * [.items](#FaceSelection+items) : <code>Array.&lt;SelectedFaceItem&gt;</code>
+    * [.items](#FaceSelection+items) : [<code>Array.&lt;SelectedFaceItem&gt;</code>](#SelectedFaceItem)
     * [.count](#FaceSelection+count) : <code>integer</code>
     * [.add(item)](#FaceSelection+add)
     * [.remove(item)](#FaceSelection+remove)
@@ -1004,7 +1084,7 @@ Note: Verto Studio (the current scene) must be in edit mode to use this class
 
 <a name="FaceSelection+items"></a>
 
-### faceSelection.items : <code>Array.&lt;SelectedFaceItem&gt;</code>
+### faceSelection.items : [<code>Array.&lt;SelectedFaceItem&gt;</code>](#SelectedFaceItem)
 The Selections items
 
 **Kind**: instance property of [<code>FaceSelection</code>](#FaceSelection)  
@@ -1025,7 +1105,7 @@ Adds an item to the selection
 
 | Param | Type | Description |
 | --- | --- | --- |
-| item | <code>SelectedFaceItem</code> | The item to add to the selection. |
+| item | [<code>SelectedFaceItem</code>](#SelectedFaceItem) | The item to add to the selection. |
 
 <a name="FaceSelection+remove"></a>
 
@@ -1036,7 +1116,7 @@ Removes an item from the selection
 
 | Param | Type | Description |
 | --- | --- | --- |
-| item | <code>SelectedFaceItem</code> | The item to remove from the selection. |
+| item | [<code>SelectedFaceItem</code>](#SelectedFaceItem) | The item to remove from the selection. |
 
 <a name="FaceSelection+clear"></a>
 
