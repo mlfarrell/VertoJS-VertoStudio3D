@@ -1,5 +1,5 @@
 
-///"blast" a bunch of copies of one model all over another's faces
+///"blast" a bunch of copies of one model all over anothers faces
 class ModelBlaster {
   static calcFaceNormal(verts, face) {
     const a = verts[face.indices[1]].subtracted(verts[face.indices[0]]);
