@@ -13,8 +13,7 @@ material.shininess = 64.0;
 
 sphere.material = material;
 
-//edit this to the include the full path to the test.jpg file
-const texture = new Texture('test', '/Users/mike/Documents/vertojs/examples/texture loading/test.jpg');
+const texture = new Texture('test', 'test.jpg');
 
 //uncomment to set texture as mipmapped
 //texture.mipmapped = true;
