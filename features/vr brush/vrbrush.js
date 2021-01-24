@@ -94,7 +94,7 @@ function doVRBrush(params) {
           for(let i = 0; i < 4; i++)
             strip.norm.push(zero);
           
-          //when updating models in VR nees to be fast, triangles are much faster than quads
+          //when updating models in VR needs to be fast, triangles are much faster than quads
           strip.tri.push(new Triangle(vi+0, vi+1, vi+2));
           strip.tri.push(new Triangle(vi+0, vi+2, vi+3));
           
@@ -122,7 +122,7 @@ function doVRBrush(params) {
 }
 
 VertoStudio.inputDialog({
-  title: 'Parametric Surface',
+  title: 'VR Brush',
   params: [
     {
       name: 'Smoothness',
