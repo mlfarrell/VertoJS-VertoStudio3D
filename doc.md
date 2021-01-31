@@ -98,77 +98,77 @@ A singleton that represents the Verto Studio editor application
 **Kind**: global class  
 
 * [VertoStudio](#VertoStudio)
-    * [.globalState](#VertoStudio+globalState) : <code>object</code>
-    * [.alert(Msg)](#VertoStudio+alert)
-    * [.version()](#VertoStudio+version) ⇒ <code>number</code>
-    * [.inputDialog(dialogOptions, callback)](#VertoStudio+inputDialog)
-    * [.onScriptEnd(callback)](#VertoStudio+onScriptEnd)
-    * [.isVR()](#VertoStudio+isVR) ⇒ <code>boolean</code>
-    * [.environmentType()](#VertoStudio+environmentType) ⇒ <code>string</code>
+    * [.globalState](#VertoStudio.globalState) : <code>object</code>
+    * [.alert(Msg)](#VertoStudio.alert)
+    * [.version()](#VertoStudio.version) ⇒ <code>number</code>
+    * [.inputDialog(dialogOptions, callback)](#VertoStudio.inputDialog)
+    * [.onScriptEnd(callback)](#VertoStudio.onScriptEnd)
+    * [.isVR()](#VertoStudio.isVR) ⇒ <code>boolean</code>
+    * [.environmentType()](#VertoStudio.environmentType) ⇒ <code>string</code>
 
-<a name="VertoStudio+globalState"></a>
+<a name="VertoStudio.globalState"></a>
 
-### vertoStudio.globalState : <code>object</code>
+### VertoStudio.globalState : <code>object</code>
 Accesses the global state object.  This object is persisted across multiple script executions.
 <p>
 Note: Any values stored in here will be readable by ALL other vertoJS scripts ran by the user.
 </p>
 
-**Kind**: instance property of [<code>VertoStudio</code>](#VertoStudio)  
-<a name="VertoStudio+alert"></a>
+**Kind**: static property of [<code>VertoStudio</code>](#VertoStudio)  
+<a name="VertoStudio.alert"></a>
 
-### vertoStudio.alert(Msg)
+### VertoStudio.alert(Msg)
 Presents up an OS-themed modal alert dialog.
 
-**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+**Kind**: static method of [<code>VertoStudio</code>](#VertoStudio)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | Msg | <code>string</code> | The message to display in the alert |
 
-<a name="VertoStudio+version"></a>
+<a name="VertoStudio.version"></a>
 
-### vertoStudio.version() ⇒ <code>number</code>
+### VertoStudio.version() ⇒ <code>number</code>
 Returns the Verto Studio version.
 
-**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+**Kind**: static method of [<code>VertoStudio</code>](#VertoStudio)  
 **Returns**: <code>number</code> - - The version of the application.  
-<a name="VertoStudio+inputDialog"></a>
+<a name="VertoStudio.inputDialog"></a>
 
-### vertoStudio.inputDialog(dialogOptions, callback)
+### VertoStudio.inputDialog(dialogOptions, callback)
 Presents an input dialog to the user with various parameter types.
 
-**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+**Kind**: static method of [<code>VertoStudio</code>](#VertoStudio)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | dialogOptions | [<code>DialogOptions</code>](#DialogOptions) | The options for presenting the dialog. |
 | callback | [<code>InputDialogCallback</code>](#InputDialogCallback) | The callback that handles the user response. |
 
-<a name="VertoStudio+onScriptEnd"></a>
+<a name="VertoStudio.onScriptEnd"></a>
 
-### vertoStudio.onScriptEnd(callback)
+### VertoStudio.onScriptEnd(callback)
 Registers a callback to signify the very end of the current script's execution, including all
 outstanding animations and input dialogs.
 This method can be useful for restoring the state of objects modified by transient operations such as animations.
 
-**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+**Kind**: static method of [<code>VertoStudio</code>](#VertoStudio)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | callback | <code>ScriptEndCallback</code> | The callback that signifies the end of the script execution. |
 
-<a name="VertoStudio+isVR"></a>
+<a name="VertoStudio.isVR"></a>
 
-### vertoStudio.isVR() ⇒ <code>boolean</code>
-**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+### VertoStudio.isVR() ⇒ <code>boolean</code>
+**Kind**: static method of [<code>VertoStudio</code>](#VertoStudio)  
 **Returns**: <code>boolean</code> - True if running on a Virtual Reality device  
-<a name="VertoStudio+environmentType"></a>
+<a name="VertoStudio.environmentType"></a>
 
-### vertoStudio.environmentType() ⇒ <code>string</code>
+### VertoStudio.environmentType() ⇒ <code>string</code>
 Obtains the current environment type that Verto Studio is running in.
 
-**Kind**: instance method of [<code>VertoStudio</code>](#VertoStudio)  
+**Kind**: static method of [<code>VertoStudio</code>](#VertoStudio)  
 **Returns**: <code>string</code> - 'PC', 'Tablet', 'Phone', 'Holographic', or 'VR'  
 <a name="Scene"></a>
 
@@ -1284,17 +1284,17 @@ A convenient ModelGenerator class
 **Kind**: global class  
 
 * [ModelGenerator](#ModelGenerator)
-    * [.genSphere(radius, slices, stacks)](#ModelGenerator+genSphere) ⇒ [<code>Model</code>](#Model)
-    * [.genTorus(radius1, radius2, rings, segments)](#ModelGenerator+genTorus) ⇒ [<code>Model</code>](#Model)
-    * [.genPlane(wt, ln)](#ModelGenerator+genPlane) ⇒ [<code>Model</code>](#Model)
-    * [.genCube(size)](#ModelGenerator+genCube) ⇒ [<code>Model</code>](#Model)
+    * [.genSphere(radius, slices, stacks)](#ModelGenerator.genSphere) ⇒ [<code>Model</code>](#Model)
+    * [.genTorus(radius1, radius2, rings, segments)](#ModelGenerator.genTorus) ⇒ [<code>Model</code>](#Model)
+    * [.genPlane(wt, ln)](#ModelGenerator.genPlane) ⇒ [<code>Model</code>](#Model)
+    * [.genCube(size)](#ModelGenerator.genCube) ⇒ [<code>Model</code>](#Model)
 
-<a name="ModelGenerator+genSphere"></a>
+<a name="ModelGenerator.genSphere"></a>
 
-### modelGenerator.genSphere(radius, slices, stacks) ⇒ [<code>Model</code>](#Model)
+### ModelGenerator.genSphere(radius, slices, stacks) ⇒ [<code>Model</code>](#Model)
 Generates a UV-sphere and adds it to the scene.
 
-**Kind**: instance method of [<code>ModelGenerator</code>](#ModelGenerator)  
+**Kind**: static method of [<code>ModelGenerator</code>](#ModelGenerator)  
 **Returns**: [<code>Model</code>](#Model) - - The newly generated model  
 
 | Param | Type | Description |
@@ -1303,12 +1303,12 @@ Generates a UV-sphere and adds it to the scene.
 | slices | <code>integer</code> | The number of U-subdivisions |
 | stacks | <code>integer</code> | The number of V-subdivisions |
 
-<a name="ModelGenerator+genTorus"></a>
+<a name="ModelGenerator.genTorus"></a>
 
-### modelGenerator.genTorus(radius1, radius2, rings, segments) ⇒ [<code>Model</code>](#Model)
+### ModelGenerator.genTorus(radius1, radius2, rings, segments) ⇒ [<code>Model</code>](#Model)
 Generates a torus and adds it to the scene.
 
-**Kind**: instance method of [<code>ModelGenerator</code>](#ModelGenerator)  
+**Kind**: static method of [<code>ModelGenerator</code>](#ModelGenerator)  
 **Returns**: [<code>Model</code>](#Model) - - The newly generated model  
 
 | Param | Type | Description |
@@ -1318,12 +1318,12 @@ Generates a torus and adds it to the scene.
 | rings | <code>integer</code> | The number of ring subdivisions |
 | segments | <code>integer</code> | The number of segment subdivisions |
 
-<a name="ModelGenerator+genPlane"></a>
+<a name="ModelGenerator.genPlane"></a>
 
-### modelGenerator.genPlane(wt, ln) ⇒ [<code>Model</code>](#Model)
+### ModelGenerator.genPlane(wt, ln) ⇒ [<code>Model</code>](#Model)
 Generates a XZ plane and adds it to the scene.
 
-**Kind**: instance method of [<code>ModelGenerator</code>](#ModelGenerator)  
+**Kind**: static method of [<code>ModelGenerator</code>](#ModelGenerator)  
 **Returns**: [<code>Model</code>](#Model) - - The newly generated model  
 
 | Param | Type | Description |
@@ -1331,12 +1331,12 @@ Generates a XZ plane and adds it to the scene.
 | wt | <code>number</code> | The plane width |
 | ln | <code>number</code> | The plane length |
 
-<a name="ModelGenerator+genCube"></a>
+<a name="ModelGenerator.genCube"></a>
 
-### modelGenerator.genCube(size) ⇒ [<code>Model</code>](#Model)
+### ModelGenerator.genCube(size) ⇒ [<code>Model</code>](#Model)
 Generates a flat-shaded cube and adds it to the scene.
 
-**Kind**: instance method of [<code>ModelGenerator</code>](#ModelGenerator)  
+**Kind**: static method of [<code>ModelGenerator</code>](#ModelGenerator)  
 **Returns**: [<code>Model</code>](#Model) - - The newly generated model  
 
 | Param | Type | Description |
@@ -1747,23 +1747,23 @@ This class will not be available on non-VR versions of Verto Studio.
 **Kind**: global class  
 
 * [VR](#VR)
-    * [.hmd](#VR+hmd) : [<code>VRHMD</code>](#VRHMD)
-    * [.controllers](#VR+controllers) : [<code>Array.&lt;VRController&gt;</code>](#VRController)
+    * [.hmd](#VR.hmd) : [<code>VRHMD</code>](#VRHMD)
+    * [.controllers](#VR.controllers) : [<code>Array.&lt;VRController&gt;</code>](#VRController)
 
-<a name="VR+hmd"></a>
+<a name="VR.hmd"></a>
 
-### vR.hmd : [<code>VRHMD</code>](#VRHMD)
+### VR.hmd : [<code>VRHMD</code>](#VRHMD)
 Accesses the currently active VR HMD representing the position of the user's head in VR.
 
-**Kind**: instance property of [<code>VR</code>](#VR)  
+**Kind**: static property of [<code>VR</code>](#VR)  
 **Read only**: true  
-<a name="VR+controllers"></a>
+<a name="VR.controllers"></a>
 
-### vR.controllers : [<code>Array.&lt;VRController&gt;</code>](#VRController)
+### VR.controllers : [<code>Array.&lt;VRController&gt;</code>](#VRController)
 Accesses the current state of the VR controllers.  
    Controller index 0 always represents the user's dominant hand.
 
-**Kind**: instance property of [<code>VR</code>](#VR)  
+**Kind**: static property of [<code>VR</code>](#VR)  
 **Read only**: true  
 <a name="Point3D"></a>
 
