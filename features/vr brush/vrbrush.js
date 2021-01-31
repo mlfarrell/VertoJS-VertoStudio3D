@@ -32,7 +32,7 @@ function doVRBrush(params) {
     VertoStudio.alert('You need at least one texture within this scene for the brush to use');
   } else {  
     
-    const brushMaterial = new Material('brush material');
+    const brushMaterial = new Material(`brush material-${tintColor[0]}-${tintColor[1]}-${tintColor[2]}`);
     brushMaterial.texture = getBrush();
     brushMaterial.diffuse = [ 1, 1, 1, 0.95 ]; //using < 1 alpha to enable semi-transparency
     brushMaterial.specular = [ 0, 0, 0, 0 ];
@@ -94,7 +94,7 @@ function doVRBrush(params) {
           for(let i = 0; i < 4; i++)
             strip.norm.push(zero);
           
-          //when updating models in VR needs to be fast, triangles are much faster than quads
+          //when updating models in VR nees to be fast, triangles are much faster than quads
           strip.tri.push(new Triangle(vi+0, vi+1, vi+2));
           strip.tri.push(new Triangle(vi+0, vi+2, vi+3));
           

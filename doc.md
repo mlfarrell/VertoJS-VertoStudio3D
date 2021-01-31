@@ -53,12 +53,20 @@
 <dt><a href="#Animation">Animation</a></dt>
 <dd><p>A utility class that drives animations inside of Verto Studio&#39;s Graphics Engine</p>
 </dd>
+<dt><a href="#VR">VR</a></dt>
+<dd><p>A special class containing functions for accessing the current VR state.</p>
+<p>
+Note: This class must be imported via ```import { VR } from 'VR';``` before it can be used.
+This class will not be available on non-VR versions of Verto Studio.
+</p></dd>
 </dl>
 
 ## Typedefs
 
 <dl>
 <dt><a href="#Point3D">Point3D</a> : <code>object</code></dt>
+<dd></dd>
+<dt><a href="#Point4D">Point4D</a> : <code>object</code></dt>
 <dd></dd>
 <dt><a href="#InputDialogCallback">InputDialogCallback</a> : <code>function</code></dt>
 <dd><p>The inputDialog callback function</p>
@@ -76,6 +84,10 @@
 <dt><a href="#AnimationCallback">AnimationCallback</a> ⇒ <code>boolean</code></dt>
 <dd><p>The Animation handler function that is called once per animation frame.</p>
 </dd>
+<dt><a href="#VRHMD">VRHMD</a> : <code>object</code></dt>
+<dd></dd>
+<dt><a href="#VRController">VRController</a> : <code>object</code></dt>
+<dd></dd>
 </dl>
 
 <a name="VertoStudio"></a>
@@ -446,6 +458,8 @@ A Verto Studio 3D model
 
 * [Model](#Model)
     * [new Model()](#new_Model_new)
+    * [.name](#Model+name) : <code>string</code>
+    * [.cullBackfaces](#Model+cullBackfaces) : <code>boolean</code>
     * [.quads](#Model+quads) : <code>Uint32Array</code>
     * [.triangles](#Model+triangles) : <code>Uint32Array</code>
     * [.texcoords](#Model+texcoords) : <code>Float32Array</code>
@@ -460,12 +474,26 @@ A Verto Studio 3D model
     * [.y](#Model+y) : <code>number</code>
     * [.x](#Model+x) : <code>number</code>
     * [.edit(callback)](#Model+edit)
+    * [.fromSceneSpace(p)](#Model+fromSceneSpace) ⇒ [<code>Point3D</code>](#Point3D)
+    * [.toSceneSpace(p)](#Model+toSceneSpace) ⇒ [<code>Point3D</code>](#Point3D)
 
 <a name="new_Model_new"></a>
 
 ### new Model()
 Creates a new empty Model and adds it to a Scene
 
+<a name="Model+name"></a>
+
+### model.name : <code>string</code>
+Accesses the Model's user-facing name.
+
+**Kind**: instance property of [<code>Model</code>](#Model)  
+<a name="Model+cullBackfaces"></a>
+
+### model.cullBackfaces : <code>boolean</code>
+Change this to true to enable backface-culling on this model.
+
+**Kind**: instance property of [<code>Model</code>](#Model)  
 <a name="Model+quads"></a>
 
 ### model.quads : <code>Uint32Array</code>
@@ -577,6 +605,30 @@ Performs an edit on this model.  For the edit to be completed, the provided call
 | Param | Type | Description |
 | --- | --- | --- |
 | callback | [<code>ModelEditFunction</code>](#ModelEditFunction) | A function that implements the model edit. |
+
+<a name="Model+fromSceneSpace"></a>
+
+### model.fromSceneSpace(p) ⇒ [<code>Point3D</code>](#Point3D)
+Converts the given vector from scene space to this model's space
+
+**Kind**: instance method of [<code>Model</code>](#Model)  
+**Returns**: [<code>Point3D</code>](#Point3D) - - The converted position.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| p | [<code>Point3D</code>](#Point3D) \| [<code>Point4D</code>](#Point4D) | The position or vector to convert. |
+
+<a name="Model+toSceneSpace"></a>
+
+### model.toSceneSpace(p) ⇒ [<code>Point3D</code>](#Point3D)
+Converts the given vector from this model's space to scene space.
+
+**Kind**: instance method of [<code>Model</code>](#Model)  
+**Returns**: [<code>Point3D</code>](#Point3D) - - The converted position.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| p | [<code>Point3D</code>](#Point3D) \| [<code>Point4D</code>](#Point4D) | The position or vector to convert. |
 
 <a name="Light"></a>
 
@@ -814,7 +866,7 @@ Represents a selected vertex
 
 * [SelectedVertexItem](#SelectedVertexItem)
     * [.type](#SelectedVertexItem+type) : <code>String</code>
-    * [.type](#SelectedVertexItem+type) : <code>integer</code>
+    * [.index](#SelectedVertexItem+index) : <code>integer</code>
 
 <a name="SelectedVertexItem+type"></a>
 
@@ -822,9 +874,9 @@ Represents a selected vertex
 The type of this selected item ('vertex')
 
 **Kind**: instance property of [<code>SelectedVertexItem</code>](#SelectedVertexItem)  
-<a name="SelectedVertexItem+type"></a>
+<a name="SelectedVertexItem+index"></a>
 
-### selectedVertexItem.type : <code>integer</code>
+### selectedVertexItem.index : <code>integer</code>
 The index of this selected vertex
 
 **Kind**: instance property of [<code>SelectedVertexItem</code>](#SelectedVertexItem)  
@@ -1021,7 +1073,7 @@ Represents a selected face
 * [SelectedFaceItem](#SelectedFaceItem)
     * [.type](#SelectedFaceItem+type) : <code>String</code>
     * [.group](#SelectedFaceItem+group) : <code>integer</code>
-    * [.type](#SelectedFaceItem+type) : <code>integer</code>
+    * [.index](#SelectedFaceItem+index) : <code>integer</code>
 
 <a name="SelectedFaceItem+type"></a>
 
@@ -1035,9 +1087,9 @@ The type of this selected item ('triangle' or 'quad')
 The index of the group this face belongs to within the model
 
 **Kind**: instance property of [<code>SelectedFaceItem</code>](#SelectedFaceItem)  
-<a name="SelectedFaceItem+type"></a>
+<a name="SelectedFaceItem+index"></a>
 
-### selectedFaceItem.type : <code>integer</code>
+### selectedFaceItem.index : <code>integer</code>
 The index of this selected face
 
 **Kind**: instance property of [<code>SelectedFaceItem</code>](#SelectedFaceItem)  
@@ -1683,6 +1735,36 @@ Note: When running in Verto Studio, only one animation is permitted to run at a 
 Stops the current animation if one is in progress.
 
 **Kind**: static method of [<code>Animation</code>](#Animation)  
+<a name="VR"></a>
+
+## VR
+A special class containing functions for accessing the current VR state.
+<p>
+Note: This class must be imported via ```import { VR } from 'VR';``` before it can be used.
+This class will not be available on non-VR versions of Verto Studio.
+</p>
+
+**Kind**: global class  
+
+* [VR](#VR)
+    * [.hmd](#VR+hmd) : [<code>VRHMD</code>](#VRHMD)
+    * [.controllers](#VR+controllers) : [<code>Array.&lt;VRController&gt;</code>](#VRController)
+
+<a name="VR+hmd"></a>
+
+### vR.hmd : [<code>VRHMD</code>](#VRHMD)
+Accesses the currently active VR HMD representing the position of the user's head in VR.
+
+**Kind**: instance property of [<code>VR</code>](#VR)  
+**Read only**: true  
+<a name="VR+controllers"></a>
+
+### vR.controllers : [<code>Array.&lt;VRController&gt;</code>](#VRController)
+Accesses the current state of the VR controllers.  
+   Controller index 0 always represents the user's dominant hand.
+
+**Kind**: instance property of [<code>VR</code>](#VR)  
+**Read only**: true  
 <a name="Point3D"></a>
 
 ## Point3D : <code>object</code>
@@ -1694,6 +1776,19 @@ Stops the current animation if one is in progress.
 | x | <code>number</code> | X position |
 | y | <code>number</code> | Y position |
 | z | <code>number</code> | Z position |
+
+<a name="Point4D"></a>
+
+## Point4D : <code>object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| x | <code>number</code> | X position |
+| y | <code>number</code> | Y position |
+| z | <code>number</code> | Z position |
+| w | <code>number</code> | W position |
 
 <a name="InputDialogCallback"></a>
 
@@ -1765,3 +1860,33 @@ The Animation handler function that is called once per animation frame.
 
 **Kind**: global typedef  
 **Returns**: <code>boolean</code> - True to keep animating, false to stop the animation.  
+<a name="VRHMD"></a>
+
+## VRHMD : <code>object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| pos | [<code>Point3D</code>](#Point3D) | The HMD position. |
+| up | [<code>Point3D</code>](#Point3D) | The HMD up vector. |
+| forward | [<code>Point3D</code>](#Point3D) | The forward (gaze) vector from the HMD. |
+
+<a name="VRController"></a>
+
+## VRController : <code>object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| pos | [<code>Point3D</code>](#Point3D) | The controller position. |
+| up | [<code>Point3D</code>](#Point3D) | The controller up vector. |
+| forward | [<code>Point3D</code>](#Point3D) | The forward (selection ray) vector from the controller. |
+| cursorPos | [<code>Point3D</code>](#Point3D) | The ray-casted cursor position for this controller. |
+| cursorNorm | [<code>Point3D</code>](#Point3D) | The ray-casted cursor normal for this controller. |
+| trigger | <code>number</code> | The pressed state of the controller's trigger button. |
+| grip | <code>number</code> | The pressed state of the controller's grip button. |
+| button1 | <code>number</code> | The pressed state of the controller's first generic button. |
+| button2 | <code>number</code> | The pressed state of the controller's second generic button. |
+
