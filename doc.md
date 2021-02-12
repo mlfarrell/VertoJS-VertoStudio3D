@@ -467,7 +467,7 @@ A Verto Studio 3D model
     * [.vertices](#Model+vertices) : <code>Float32Array</code>
     * [.material](#Model+material) : [<code>Material</code>](#Material)
     * [.hidden](#Model+hidden) : <code>boolean</code>
-    * [.scale](#Model+scale) : [<code>Point3D</code>](#Point3D)
+    * [.scale](#Model+scale) : <code>Array.&lt;number&gt;</code>
     * [.orientation](#Model+orientation) : <code>Array.&lt;number&gt;</code>
     * [.pos](#Model+pos) : [<code>Point3D</code>](#Point3D)
     * [.z](#Model+z) : <code>number</code>
@@ -558,8 +558,8 @@ Accesses the Model's hidden state.
 **Kind**: instance property of [<code>Model</code>](#Model)  
 <a name="Model+scale"></a>
 
-### model.scale : [<code>Point3D</code>](#Point3D)
-Accesses the Model's 3D scale
+### model.scale : <code>Array.&lt;number&gt;</code>
+Accesses the Model's 3D XYZ scale value.
 
 **Kind**: instance property of [<code>Model</code>](#Model)  
 <a name="Model+orientation"></a>
