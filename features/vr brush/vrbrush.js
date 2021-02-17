@@ -22,14 +22,10 @@ function doVRBrush(params) {
   const tintColor = [ params['Red'].value, params['Green'].value, params['Blue'].value, 0 ];
   const scene = Scene.current;
 
-  scene.loadAllTextures();
-
   if(!VertoStudio.isVR()) {
     VertoStudio.alert('This script only runs on Verto Studio VR');
   } else if(scene.editMode) {
     VertoStudio.alert('You cannot use this script in edit mode');
-  } else if(scene.textures.length === 0) {
-    VertoStudio.alert('You need at least one texture within this scene for the brush to use');
   } else {  
     
     const brushMaterial = new Material(`brush material-${tintColor[0]}-${tintColor[1]}-${tintColor[2]}`);
